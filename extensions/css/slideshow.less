@@ -7,30 +7,34 @@
  */
 
 
-#slideshow{
+#slideshow {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: @boilerplate-black;
+}
+
+#teaser{
 	counter-reset: slider;
 	li{
 		position: absolute;
-		display: none;
+		display: block;
 		left: 0;
 		right: 0;
 		top: 0;
 		bottom: 0;
+		opacity: 0;
+		background-repeat: no-repeat;
 		background-position: 50% 50%;
 		background-size: cover;
+		background-color: @boilerplate-black;
 		#boilerplate-transition > .fade;
 
-		.pointerevents & {
-			display: block;
-			opacity: 0;
-			pointer-events: none;
-		}
-		&.active{
-			display: block;
-			.pointerevents & {
-				opacity: 1;
-				pointer-events: auto;
-			}
+		&.active {
+			z-index:1;
+			opacity: 1;
 		}
 
 		&:after {
@@ -51,26 +55,32 @@
 	width: 100%;
 	top: 30%;
 
-	@pagersize: 140px;
+	@pagersize: 80px;
 
 	li {
 		position: absolute;
 		width: @pagersize;
 		height: @pagersize;
 		overflow: hidden;
-		z-index: 1;
-		color: fade(@boilerplate-white,80%);
-		font-size: 120px;
-		line-height: 1.1;
+		z-index: 2;
+		color:darken(@boilerplate-white,60%);
+		font-size: 40px;
+		line-height: @pagersize;
 		text-align: center;
 		text-indent: 101%;
 		cursor: pointer;
-		background: fade(@boilerplate-white,30%);
-		#boilerplate-border-radius > .generic(@pagersize);
+		background:darken(@boilerplate-white,2%);
+		border: 4px solid darken(@boilerplate-white,60%);
+		opacity:0.8;
 		#boilerplate-transition > .short;
-
+		#boilerplate-border-radius > .generic(@pagersize);
+		
 		&:hover {
-			background:fade(@boilerplate-white,50%);
+			opacity:1;
+			.no-opacity & {
+				background:@boilerplate-white;
+				color: darken(@boilerplate-white,70%);
+			}
 		}
 
 		&:before,
@@ -82,17 +92,18 @@
 			bottom: 0;
 			text-indent: 0;
 			text-align: center;
+			font-weight: bold;
 		}
 		&.prev {
 			left: 40px;
 			&:before {
-				content: "⊲";
+				content: "<";
 			}
 		}
 		&.next {
 			right: 40px;
 			&:after {
-				content: "⊳";
+				content: ">";
 			}
 		}
 	}
