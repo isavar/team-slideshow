@@ -8,6 +8,7 @@
 
 
 #slideshow{
+	counter-reset: slider;
 	li{
 		position: absolute;
 		display: none;
@@ -32,24 +33,15 @@
 			}
 		}
 
-		a {
+		&:after {
+			counter-increment: slider;
+			content:counter(slider) ".";
+			padding: 0 4px 0;
 			position: absolute;
-			right: 10%;
-			bottom: 80px;
-			padding: 5px 10px;
-			text-align: right;
-			color: @boilerplate-button;
-			font-family: Helvetica, Arial, sans-serif;
-			font-size:30px;
-			text-decoration: none;
-			background: @boilerplate-darkgrey;
-			border: 4px solid @boilerplate-button;
-			#boilerplate-transition > .short;
-			
-			&:hover {
-				color: darken(@boilerplate-button,10%);
-				background: lighten(@boilerplate-darkgrey,10%);
-			}
+			bottom:20px;
+			right:40px;
+			color:#fff;
+			font-size:80px;
 		}
 	}
 }
