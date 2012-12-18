@@ -1,40 +1,46 @@
 	var Slideshow = function($node) {
 
 		var $items = $node.find("li"),
-				$pager = $node.next(".js_pager"),
+				$pager = $node.next(".js_slidepager"),
 				active = "active",
-				activeClass = ".active",
-				click  = "click",
-				currentIdx = 0,
-				last = $items.length-1,
-				activeIndex = $items.filter(activeClass).index(),
-				delay = 10000;
+				last = $items.length - 1,
+				activeIndex = 0,
+				delay = 10000,
+				interval;
 
 		var show = function(idx) {
-				$items.eq(activeIndex).removeClass(active);
-				activeIndex = idx;
-				$items.eq(activeIndex).addClass(active);
+			$items.eq(activeIndex).removeClass(active);
+			activeIndex = idx;
+			$items.eq(activeIndex).addClass(active);
 		};
 
 		var timer = function() {
-				timeout = setTimeout(function() {
-						var idx = activeIndex + 1;
-						show(idx > last ? 0 : idx);
-						timer();
-				}, delay);
+			interval = setInterval(function() {
+					var idx = activeIndex + 1;
+					show(idx > last ? 0 : idx);
+			}, delay);
 		};
-		timer();
 
+		/*
+			Beginne automatisches Durchsliden, 
+			sofern nicht mit den Bühnen interagiert wird
+		*/
+		timer();
 		$node.on("mouseenter mouseleave", function(e) {
-				clearTimeout(timeout);
-				if (e.type == "mouseleave") {
-						timer();
-				}
+			clearInterval(interval);
+			if (e.type == "mouseleave") {
+					timer();
+			}
 		});
 
-		$pager.on(click, ".js_slideprev, .js_slidenext", function(e) {
-				var idx = $(this).index() ? activeIndex + 1 : activeIndex - 1;
-				show(idx < 0 ? last : (idx > last ? 0 : idx));
+		$pager.on("click", "li", function(e) {
+			/*
+				Es gibt nur zwei LIs im pager, daher ist $(this).index() entweder
+				 0 oder 1 und kann für die Unterscheidung von vor und zurück 
+				 als bool verwendet werden.
+			*/
+			var idx = $(this).index() ? activeIndex + 1 : activeIndex - 1;
+			show(idx < 0 ? last : (idx > last ? 0 : idx));
 		});
 	};
 
