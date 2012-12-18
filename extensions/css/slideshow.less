@@ -1,9 +1,18 @@
 /*
- *  This Slideshow demonstrates... TODO
- *	fullsize images - background-size:cover
- *  (iPad, Chrome, Safari, Firefox and IE7+)
+ *  Bei dieser Slideshow geht es um großformatige Teaser mit Hintergrundbildern, die sich 
+ *  an die Größe des Browserfensters anpassen. Verantwortlich dafür ist im Wesentlichen 
+ *  die CSS-Eigenschaft background-size (ab IE9).
+ * 
+ *  Die Slideshow nutzt eine Transition des opacity-Wertes für den Überblend-Effekt beim Bildwechsel (ab IE10). 
+ * 
+ *  Wenn nicht mit der Slideshow interagiert wird, beginnt ein automatischer Durchlauf. 
+ * 
+ *  (getestet auf iPad, Chrome, Safari, Firefox and IE7+)
  *
- *	Ein dunkler Hintergrund verhindert unschönes Aufblitzen beim Überblenden
+ * Tipp:
+ *	- Ein dunkler Hintergrund verhindert unschönes helles Aufblitzen beim Überblenden.
+ *  - Das umgebende #slideshow Div ist eigentlich nur nötig, wenn man das automatische
+ *    Durchsliden nutzen will (für das Binden von Mouseevents)
  */
 
 
@@ -26,14 +35,12 @@
 		top: 0;
 		bottom: 0;
 		opacity: 0;
-		background-repeat: no-repeat;
-		background-position: 50% 50%;
+		background: @boilerplate-black 50% 50% no-repeat;
 		background-size: cover;
-		background-color: @boilerplate-black;
 		#boilerplate-transition > .fade;
 
 		&.active {
-			z-index:1;
+			z-index: 1;
 			opacity: 1;
 		}
 
@@ -63,22 +70,22 @@
 		height: @pagersize;
 		overflow: hidden;
 		z-index: 2;
-		color:darken(@boilerplate-white,60%);
 		font-size: 40px;
 		line-height: @pagersize;
 		text-align: center;
 		text-indent: 101%;
 		cursor: pointer;
-		background:darken(@boilerplate-white,2%);
+		color: darken(@boilerplate-white,60%);
+		background: darken(@boilerplate-white,2%);
 		border: 4px solid darken(@boilerplate-white,60%);
-		opacity:0.8;
+		opacity: 0.8;
 		#boilerplate-transition > .short;
 		#boilerplate-border-radius > .generic(@pagersize);
 		
 		&:hover {
-			opacity:1;
+			opacity: 1;
 			.no-opacity & {
-				background:@boilerplate-white;
+				background: @boilerplate-white;
 				color: darken(@boilerplate-white,70%);
 			}
 		}
