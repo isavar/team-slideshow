@@ -3,7 +3,56 @@
  *	fullsize images - background-size:cover
  *  (iPad, Chrome, Safari, Firefox and IE7+)
  *
+ *	Ein dunkler Hintergrund verhindert unschönes Aufblitzen beim Überblenden
  */
+
+
+#slideshow{
+	li{
+		position: absolute;
+		display: none;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-position: 50% 50%;
+		background-size: cover;
+		#boilerplate-transition > .fade;
+
+		.pointerevents & {
+			display: block;
+			opacity: 0;
+			pointer-events: none;
+		}
+		&.active{
+			display: block;
+			.pointerevents & {
+				opacity: 1;
+				pointer-events: auto;
+			}
+		}
+
+		a {
+			position: absolute;
+			right: 10%;
+			bottom: 80px;
+			padding: 5px 10px;
+			text-align: right;
+			color: @boilerplate-button;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size:30px;
+			text-decoration: none;
+			background: @boilerplate-darkgrey;
+			border: 4px solid @boilerplate-button;
+			#boilerplate-transition > .short;
+			
+			&:hover {
+				color: darken(@boilerplate-button,10%);
+				background: lighten(@boilerplate-darkgrey,10%);
+			}
+		}
+	}
+}
 
 #pager {
 	position: absolute;
@@ -11,21 +60,26 @@
 	top: 30%;
 
 	@pagersize: 140px;
+
 	li {
 		position: absolute;
 		width: @pagersize;
 		height: @pagersize;
-		color: fade(@boilerplate-white,80%);
-		font-size:120px;
-		line-height:1.1;
-		text-align: center;
-		text-indent: 101%;
 		overflow: hidden;
 		z-index: 1;
-		cursor:pointer;
-		background:fade(@boilerplate-white,30%);
+		color: fade(@boilerplate-white,80%);
+		font-size: 120px;
+		line-height: 1.1;
+		text-align: center;
+		text-indent: 101%;
+		cursor: pointer;
+		background: fade(@boilerplate-white,30%);
 		#boilerplate-border-radius > .generic(@pagersize);
 		#boilerplate-transition > .short;
+
+		&:hover {
+			background:fade(@boilerplate-white,50%);
+		}
 
 		&:before,
 		&:after {
@@ -47,76 +101,6 @@
 			right: 40px;
 			&:after {
 				content: "⊳";
-			}
-		}
-
-		&:hover {
-			background:fade(@boilerplate-white,50%);
-		}
-
-	}
-}
-
-#slideshow{
-	
-	position: absolute;
-	top:0;
-	left:0;
-	bottom:0;
-	width:100%;
-	background:@boilerplate-black;
-
-
-	// &:after {
-	// 	content: "⊳";
-	// 	right: 40px;   
-	// }
-	// &:before {
-	// 	content:"⊲";
-	// 	left: 40px;
-	// }
-
-	li{
-		display: none;
-		width: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		background-position: 50% 50%;
-		background-size: cover;
-		#boilerplate-transition > .fade;
-
-		a {
-			position: absolute;
-			right: 10%;
-			bottom: 80px;
-			padding: 5px 10px;
-			text-align: right;
-			color: @boilerplate-button;
-			font-family: Helvetica, Arial, sans-serif;
-			font-size:30px;
-			text-decoration: none;
-			background: @boilerplate-darkgrey;
-			border: 4px solid @boilerplate-button;
-			#boilerplate-transition > .short;
-			
-			&:hover {
-				color: darken(@boilerplate-button,10%);
-				background: lighten(@boilerplate-darkgrey,10%);
-			}
-		}
-
-		.pointerevents &{
-			display: block;
-			opacity: 0;
-			pointer-events: none;
-		}
-		&.active{
-			display: block;
-			.pointerevents &{
-				opacity: 1;
-				pointer-events: auto;
 			}
 		}
 	}
