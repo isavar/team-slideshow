@@ -1,0 +1,59 @@
+//base typo colors
+@boilerplate-black:#000;
+@boilerplate-white:#fff;
+@boilerplate-grey:#ccc;
+@boilerplate-darkgrey: #333;
+			
+@boilerplate-button: #dfdfdf;
+
+
+//background border colors
+@boilerplate-body:#E54B25;
+
+@boilerplate-image-path:"../../images";
+@boilerplate-font-path:"../../fonts";
+
+
+
+// transition -----------------------------------------------------------------
+
+.boilerplate-transition(@val1:0s,@val2:all,@val3:ease-out) {
+	@style:@val2 @val1 @val3;
+	-webkit-transition: @style;
+	-moz-transition: @style;
+	-ms-transition: @style;
+	-o-transition: @style;
+	transition: @style;
+}
+
+#boilerplate-transition{
+	.short(){
+		.boilerplate-transition(.2s);
+	}
+	.fade(){
+		.boilerplate-transition(.5s,opacity);
+	}
+}
+
+
+// border-radius --------------------------------------------------------------
+
+.boilerplate-border-radius(@val:0) {
+  -webkit-border-radius:@val;
+  -moz-border-radius:@val;
+  -ms-border-radius:@val;
+  -o-border-radius:@val;
+  border-radius:@val;
+}
+
+#boilerplate-border-radius {
+  .none(){
+    .boilerplate-border-radius();
+  }
+  .generic(@val){
+    .boilerplate-border-radius(@val);
+  }
+  .small(){
+    .boilerplate-border-radius(2px);
+  }
+}
