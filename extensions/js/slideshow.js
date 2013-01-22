@@ -15,9 +15,9 @@ var Slideshow = function($node) {
 
 	$node.on("click", ".js_slidepager > li", function(e) {
 		/*
-			Es gibt nur zwei LIs im pager, daher ist $(this).index() entweder
-			 0 oder 1 und kann für die Unterscheidung von vor und zurück 
-			 als bool verwendet werden.
+			Es gibt nur zwei LIs im pager, daher ist $(this).index() entweder 
+			0 oder 1 und kann für die Unterscheidung von vor und zurück 
+			als bool verwendet werden.
 		*/
 		var idx = $(this).index() ? activeIndex + 1 : activeIndex - 1;
 		show(idx < 0 ? last : (idx > last ? 0 : idx));
