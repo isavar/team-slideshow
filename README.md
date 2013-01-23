@@ -12,14 +12,14 @@ Die Slideshow nutzt eine Transition des **opacity**-Wertes für den Überblend-E
 
 Wenn nicht mit der Slideshow interagiert wird, beginnt ein automatischer Durchlauf. 
 
-(getestet auf iPad, Chrome, Safari, Firefox and IE7+)
+(getestet auf iPad, Chrome, Safari, Firefox and IE8+)
 
 
 ####Tipps:
 * Ein dunkler Hintergrund verhindert unschönes helles Aufblitzen beim Überblenden.
 * Das umgebende #slideshow Div ist nur nötig, wenn man das automatische
   Durchsliden nutzen will (für das Binden von Mouseevents)
-* Für IE 7/8 kann man den Effekt von background-size:cover; mit JS simulieren, dann 
+* Für IE 8 kann man den Effekt von background-size:cover; mit JS simulieren, dann 
   mit echten img-Elementen statt background-images
 
 
