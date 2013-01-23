@@ -15,19 +15,12 @@ li {
 }
 /*
  *  Bei dieser Slideshow geht es um großformatige Teaser mit Hintergrundbildern, die sich 
- *  an die Größe des Browserfensters anpassen. Verantwortlich dafür ist im Wesentlichen 
- *  die CSS-Eigenschaft background-size (ab IE9).
+ *  an die Größe des Browserfensters/Elternelements anpassen. Verantwortlich dafür ist
+ *  die CSS-Eigenschaft background-size (erst ab IE9). Browsern, die das nicht können, wird 
+ *  per JS nachgeholfen. 
  * 
  *  Die Slideshow nutzt eine Transition des opacity-Wertes für den Überblend-Effekt beim Bildwechsel (ab IE10). 
  * 
- *  Wenn nicht mit der Slideshow interagiert wird, beginnt ein automatischer Durchlauf. 
- * 
- *  (getestet auf iPad, Chrome, Safari, Firefox and IE7+)
- *
- * Tipp:
- *	- Ein dunkler Hintergrund verhindert unschönes helles Aufblitzen beim Überblenden.
- *  - Das umgebende #slideshow Div ist eigentlich nur nötig, wenn man das automatische
- *    Durchsliden nutzen will (für das Binden von Mouseevents)
  */
 #slideshow {
   position: absolute;
@@ -48,6 +41,7 @@ li {
   top: 0;
   bottom: 0;
   opacity: 0;
+  visibility: hidden;
   background: #000000 50% 50% no-repeat;
   background-size: cover;
   -webkit-transition: opacity 0.5s ease-out;
@@ -55,10 +49,15 @@ li {
   -ms-transition: opacity 0.5s ease-out;
   -o-transition: opacity 0.5s ease-out;
   transition: opacity 0.5s ease-out;
+  /* IE 7/8 */
+
 }
 #teaser li.active {
   z-index: 1;
   opacity: 1;
+}
+#teaser li img.scale {
+  display: none;
 }
 #teaser li:after {
   counter-increment: slider;
@@ -70,10 +69,20 @@ li {
   color: #fff;
   font-size: 80px;
 }
+.opacity #teaser li {
+  visibility: visible;
+}
+.no-opacity #teaser li.active.resized {
+  visibility: visible;
+}
+.no-backgroundsize #teaser li.resized img.scale {
+  display: block;
+}
 #pager {
   position: absolute;
   width: 100%;
   top: 30%;
+  z-index: 1;
 }
 #pager li {
   position: absolute;

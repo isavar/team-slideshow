@@ -6,21 +6,22 @@ Ein Best Practice Beispiel für eine vollformatige Slideshow
 
 Bei dieser Slideshow geht es um großformatige Teaser mit Hintergrundbildern, die sich 
 an die Größe des Browserfensters anpassen. Verantwortlich dafür ist im Wesentlichen 
-die CSS-Eigenschaft **background-size** (erst ab IE9).
+die CSS-Eigenschaft **background-size** (erst ab IE9). Browsern, die das nicht können, 
+wird hier per JS nachgeholfen. 
 
 Die Slideshow nutzt eine Transition des **opacity**-Wertes für den Überblend-Effekt beim Bildwechsel (ab IE10). 
 
 Wenn nicht mit der Slideshow interagiert wird, beginnt ein automatischer Durchlauf. 
 
-(getestet auf iPad, Chrome, Safari, Firefox and IE8+)
+(getestet auf iPad, Chrome, Safari, Firefox and IE7+)
 
 
 ####Tipps:
 * Ein dunkler Hintergrund verhindert unschönes helles Aufblitzen beim Überblenden.
 * Das umgebende #slideshow Div ist nur nötig, wenn man das automatische
   Durchsliden nutzen will (für das Binden von Mouseevents)
-* Für IE 8 kann man den Effekt von background-size:cover; mit JS simulieren, dann 
-  mit echten img-Elementen statt background-images
+* Wenn IE 7 und 8 nicht berücksichtigt werden müssen, kann auf das imagescaler.js verzichtet werden.
+  Aktuelle Browser können den gleichen Effekt per CSS mit background-size:cover erzielen.
 
 
 ####Bilder:
