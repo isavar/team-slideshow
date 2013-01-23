@@ -109,6 +109,8 @@ li {
   -ms-border-radius: 80px;
   -o-border-radius: 80px;
   border-radius: 80px;
+  /* IE7 */
+
 }
 #pager li:hover {
   opacity: 1;
@@ -139,4 +141,8 @@ li {
 }
 #pager li.next:after {
   content: ">";
+}
+.no-generatedcontent #pager li {
+  text-indent: 0;
+  font-size: 20px;
 }
