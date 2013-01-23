@@ -5,12 +5,12 @@ var Imagescaler = function($node) {
       selector       = "img.scaleimg",
       round          = function(i){ return (parseInt( i*10000, 10 ) / 10000); },
       styleDoc       = (document.getElementById("js_scale_styles").sheet || document.styleSheets["js_scale_styles"]),
-      $slot          = $node,
+      $slots         = $node.find("li"),
       slotwidth, slotheight, slotratio, rulesStr, width, height;
 
-  var resizeImg = function(e) {
-    slotwidth = $slot.width();
-    slotheight = $slot.height();
+  var resizeImg = function() {
+    slotwidth = $slots.first().width();
+    slotheight = $slots.first().height();
     slotratio = slotwidth / slotheight;
     
     if (slotratio < visualratio) {
@@ -33,18 +33,23 @@ var Imagescaler = function($node) {
       styleDoc.addRule(selector, rulesStr);
     }
 
-    $slot.addClass("resized");
+    $slots.addClass("resized");
   };
   
-  var replaceBackgroundImage = function() {
-    var imgURL = $slot.css('background-image').match(/url\("(.*)"\)/)[1];
+  var replaceBackgroundImage = function($elm) {
+    var imgURL = $elm.css('background-image').match(/url\("(.*)"\)/)[1];
     var $imgElement = $("<img class='scaleimg'/>").attr('src', imgURL);
-    $slot.append($imgElement);
-    resizeImg();
-    $slot.css('background-image','none');
+    $elm.append($imgElement);
+    //resizeImg($elm);
+    $elm.css('background-image','none');
   };
 
-  replaceBackgroundImage();
+
+  $slots.each(function(idx, elm) {
+    replaceBackgroundImage($(elm));
+  });
+  resizeImg();
+  
   $(window).bind("resize", resizeImg);
 
 };
@@ -55,7 +60,7 @@ $(document).ready(function(e) {
     return; // JS wird nur benötigt, wenn der Browser kein background-size kann
   }
 
-  $(".js_scale > li").each(function() {
+  $(".js_scale").each(function() {
     new Imagescaler($(this));
   });
 });
