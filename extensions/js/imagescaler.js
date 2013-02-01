@@ -35,9 +35,10 @@ var Imagescaler = function($node) {
 	};
 	
 	var replaceBackgroundImage = function($elm) {
-		var imgURL = $elm.css('background-image').match(/url\("(.*)"\)/)[1];
+		//var imgURL = $elm.css('background-image').match(/url\("(.*)"\)/)[1];
+		var imgURL = $elm.attr("data-style").match(/.*url\('(.*)'\).*/)[1];
 		var $imgElement = $("<img class='scaleimg'/>").attr('src', imgURL);
-		$elm.append($imgElement).css('background-image','none');
+		$elm.append($imgElement).removeAttr("data-style");//.css('background-image','none');
 	};
 
 
@@ -53,10 +54,10 @@ var Imagescaler = function($node) {
 
 $(document).ready(function(e) {
 	if (Modernizr.backgroundsize) { 
-		return; // JS wird nur benötigt, wenn der Browser kein background-size kann
+		return; // dieses JS wird nur benötigt, wenn der Browser kein background-size kann
 	}
 
 	$(".js_scale").each(function() {
-		new Imagescaler($(this));
+		Imagescaler($(this));
 	});
 });
