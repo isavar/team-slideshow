@@ -59,13 +59,15 @@
 		.opacity & {
 			visibility: visible;
 		}
-		.no-opacity & {
-			&.active.resized {
-				visibility: visible;
+	}
+	&.resized {
+		li {
+			.no-opacity &{
+				&.active {
+					visibility: visible;
+				}
 			}
-		}
-		.no-backgroundsize & {
-			&.resized {
+			.no-backgroundsize & {
 				img.scaleimg {
 					display: block;
 				}

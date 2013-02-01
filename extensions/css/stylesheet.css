@@ -73,10 +73,10 @@ li {
 .opacity #teaser li {
   visibility: visible;
 }
-.no-opacity #teaser li.active.resized {
+.no-opacity #teaser.resized li.active {
   visibility: visible;
 }
-.no-backgroundsize #teaser li.resized img.scaleimg {
+.no-backgroundsize #teaser.resized li img.scaleimg {
   display: block;
 }
 #pager {

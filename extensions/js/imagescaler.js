@@ -31,7 +31,7 @@ var Imagescaler = function($node) {
 			styleDoc.addRule(selector, rulesStr);
 		}
 
-		$slots.addClass("resized");
+		$node.addClass("resized");
 	};
 	
 	var replaceBackgroundImage = function($elm) {
