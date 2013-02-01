@@ -37,12 +37,11 @@ var Slideshow = function($node) {
 	};
 
 	timer();
-	$node.on("mouseenter mouseleave", function(e) {
+
+	$node.on("mouseenter", function(e) {
 		clearInterval(interval);
-		if (e.type == "mouseleave") {
-			timer();
-		}
 	});
+	$node.on("mouseleave", timer);
 
 };
 
