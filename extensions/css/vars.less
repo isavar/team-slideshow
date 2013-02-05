@@ -34,21 +34,21 @@
 // border-radius --------------------------------------------------------------
 
 .boilerplate-border-radius(@val:0) {
-  -webkit-border-radius:@val;
-  -moz-border-radius:@val;
-  -ms-border-radius:@val;
-  -o-border-radius:@val;
-  border-radius:@val;
+	-webkit-border-radius:@val;
+	-moz-border-radius:@val;
+	-ms-border-radius:@val;
+	-o-border-radius:@val;
+	border-radius:@val;
 }
 
 #boilerplate-border-radius {
-  .none(){
-    .boilerplate-border-radius();
-  }
-  .generic(@val){
-    .boilerplate-border-radius(@val);
-  }
-  .small(){
-    .boilerplate-border-radius(2px);
-  }
+	.none(){
+		.boilerplate-border-radius();
+	}
+	.generic(@val){
+		.boilerplate-border-radius(@val);
+	}
+	.small(){
+		.boilerplate-border-radius(2px);
+	}
 }

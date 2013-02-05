@@ -4,11 +4,12 @@ var Imagescaler = function($node) {
 		round 		= function(i){ return (parseInt( i*10000, 10 ) / 10000); },
 		styleDoc 	= (document.getElementById("js_scale_styles").sheet || document.styleSheets["js_scale_styles"]),
 		$slots 		= $node.find("li"),
+		$first		= $slots.first(),
 		slotwidth, slotheight, slotratio, rulesStr, width, height;
 
 	var resizeImg = function() {
-		slotwidth = $slots.first().width();
-		slotheight = $slots.first().height();
+		slotwidth = $first.width();
+		slotheight = $first.height();
 		slotratio = slotwidth / slotheight;
 		
 		if (slotratio < visualratio) {
@@ -35,10 +36,9 @@ var Imagescaler = function($node) {
 	};
 	
 	var replaceBackgroundImage = function($elm) {
-		//var imgURL = $elm.css('background-image').match(/url\("(.*)"\)/)[1];
 		var imgURL = $elm.attr("data-style").match(/.*url\('(.*)'\).*/)[1];
 		var $imgElement = $("<img class='scaleimg'/>").attr('src', imgURL);
-		$elm.append($imgElement).removeAttr("data-style");//.css('background-image','none');
+		$elm.append($imgElement).removeAttr("data-style");
 	};
 
 
@@ -53,10 +53,11 @@ var Imagescaler = function($node) {
 
 
 $(document).ready(function(e) {
-	if (Modernizr.backgroundsize) { 
-		return; // dieses JS wird nur benötigt, wenn der Browser kein background-size kann
-	}
 
+	// dieses JS wird nur benötigt, wenn der Browser kein background-size kann
+	if (Modernizr.backgroundsize) { 
+		return; 
+	}
 	$(".js_scale").each(function() {
 		Imagescaler($(this));
 	});
