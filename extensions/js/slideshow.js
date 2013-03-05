@@ -47,7 +47,7 @@ var Slideshow = function($node) {
 
 $(document).ready(function(e) {
 	$(".js_slideshow").each(function() {
-		new Slideshow($(this));
+		Slideshow($(this));
 	});
 });
 

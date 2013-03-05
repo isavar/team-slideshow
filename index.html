@@ -6,22 +6,23 @@
 	<meta name="language" content="en" />
 
 	<link rel="stylesheet" href="extensions/css/stylesheet.css" media="screen,print" />
+	<style type="text/css" id="js_scale_styles"></style>
 </head>
 
 <body>
 
 	<div id="slideshow" class="js_slideshow">
-		<ol id="teaser" class="js_slide">
-			<li class="active" style="background-image:url('images/panorama1.jpg')">
+		<ol id="teaser" class="js_slide js_scale">
+			<li class="active js_imgload" data-style="background-image:url('images/panorama1.jpg')">
 				<!-- Teaser content goes here -->
 			</li>
-			<li style="background-image:url('images/panorama2.jpg')">
+			<li class="js_imgload" data-style="background-image:url('images/panorama2.jpg')">
 				<!-- Teaser content goes here -->
 			</li>
-			<li style="background-image:url('images/panorama3.jpg')">
+			<li class="js_imgload" data-style="background-image:url('images/panorama3.jpg')">
 				<!-- Teaser content goes here -->
 			</li>
-			<li style="background-image:url('images/panorama4.jpg')">
+			<li class="js_imgload" data-style="background-image:url('images/panorama4.jpg')">
 				<!-- Teaser content goes here -->
 			</li>
 		</ol>
@@ -36,5 +37,7 @@
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 	<script src="extensions/js/slideshow.js"></script>
+	<script src="extensions/js/imagescaler.js"></script>
+	<script src="extensions/js/imageloader.js"></script>
 </body>
 </html>
