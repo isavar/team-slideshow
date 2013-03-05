@@ -3,8 +3,8 @@ var Imageloader = function($node) {
 	var data = $node.data();
 
 	var replaceStyle = function() {
-		$node.attr("style", data.style);
-		$node.removeAttr("data-style");
+		$node.attr("style", [style, data.style].join(";"));
+		$node.removeAttr("data-style").removeData("style");
 	};
 
 
