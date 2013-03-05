@@ -1,14 +1,3 @@
-/*
- *  Bei dieser Slideshow geht es um großformatige Teaser mit Hintergrundbildern, die sich 
- *  an die Größe des Browserfensters/Elternelements anpassen. Verantwortlich dafür ist
- *  die CSS-Eigenschaft background-size (erst ab IE9). Browsern, die das nicht können, wird 
- *  per JS nachgeholfen. 
- * 
- *  Die Slideshow nutzt eine Transition des opacity-Wertes für den Überblend-Effekt beim Bildwechsel (ab IE10). 
- * 
- */
-
-
 #slideshow {
 	position: absolute;
 	left: 0;
@@ -39,10 +28,6 @@
 			opacity: 1;
 		}
 
-		img.scale {
-			display: none;
-		}
-
 		&:after {
 			counter-increment: slider;
 			content:counter(slider) ".";
@@ -54,22 +39,25 @@
 			font-size: 80px;
 		}
 
+		/* nicht mehr nötig, wenn imagescaler.js entfernt wird */
+		img.scaleimg {
+			display: none;
+		}
 
 		/* IE 7/8 */
 		.opacity & {
 			visibility: visible;
 		}
 	}
+	/* IE 7/8 */
 	&.resized {
 		li {
+			img.scaleimg {
+				display: block;
+			}
 			.no-opacity &{
 				&.active {
 					visibility: visible;
-				}
-			}
-			.no-backgroundsize & {
-				img.scaleimg {
-					display: block;
 				}
 			}
 		}

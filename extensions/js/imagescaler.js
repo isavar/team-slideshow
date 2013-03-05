@@ -1,3 +1,14 @@
+/*
+ * Dieses Script wird hier nur benötigt, wenn der Browser kein background-size kennt (IE7+8)
+ * 
+ * Sucht in bestimmten Elementen nach background-images und setzt diese stattdessen als echte
+ * IMG-Elemente ein.
+ * Berechnet Höhe und Breite der Bilder so, dass es immer das Elternelement ausfüllt - d. h. es 
+ * wird ggf. in beide Richtungen etwas vom Bild "abgeschnitten". Dies simuliert also die
+ * CSS-Eigenschaft background-size="cover".
+ * 
+ */
+
 var Imagescaler = function($node) {
 	var visualratio = 1024 / 681, //Originalmaße der verwendeten Bilder
 		selector 	= "img.scaleimg",
@@ -54,7 +65,7 @@ var Imagescaler = function($node) {
 
 $(document).ready(function(e) {
 
-	// dieses JS wird nur benötigt, wenn der Browser kein background-size kann
+	// Direkt abbrechen, wenn der Browser background-size kann
 	if (Modernizr.backgroundsize) { 
 		return; 
 	}
