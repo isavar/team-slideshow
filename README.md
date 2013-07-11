@@ -15,6 +15,8 @@ Wenn nicht mit der Slideshow interagiert wird, beginnt ein automatischer Durchla
 
 (getestet auf iPad, Chrome, Safari, Firefox and IE7+)
 
+####Todo:
+Man könnte noch eine slide-Variante für Touchgeräte ergänzen
 
 ####Tipps:
 * Ein dunkler Hintergrund verhindert unschönes helles Aufblitzen beim Überblenden.
