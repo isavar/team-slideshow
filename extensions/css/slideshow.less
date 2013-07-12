@@ -1,0 +1,130 @@
+#slideshow {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: @boilerplate-black;
+}
+
+#teaser{
+	counter-reset: slider;
+	li{
+		position: absolute;
+		display: block;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		opacity: 0;
+		visibility: hidden;
+		overflow: hidden;
+		background: @boilerplate-black 50% 50% no-repeat;
+		background-size: cover;
+		#boilerplate-transition > .fade;
+
+		&.active {
+			z-index: 1;
+			opacity: 1;
+		}
+
+		&:after {
+			counter-increment: slider;
+			content:counter(slider) ".";
+			padding: 0 4px 0;
+			position: absolute;
+			bottom: 20px;
+			right: 40px;
+			color: #fff;
+			font-size: 80px;
+		}
+
+		/* nicht mehr nötig, wenn imagescaler.js entfernt wird */
+		img.scaleimg {
+			display: none;
+		}
+
+		/* IE 7/8 */
+		.opacity & {
+			visibility: visible;
+		}
+	}
+	/* IE 7/8 */
+	&.resized {
+		li {
+			img.scaleimg {
+				display: block;
+			}
+			.no-opacity &{
+				&.active {
+					visibility: visible;
+				}
+			}
+		}
+	}
+}
+
+#pager {
+	position: absolute;
+	width: 100%;
+	top: 30%;
+	z-index: 1;
+	@pagersize: 80px;
+
+	li {
+		position: absolute;
+		width: @pagersize;
+		height: @pagersize;
+		overflow: hidden;
+		z-index: 2;
+		font-size: 40px;
+		line-height: @pagersize;
+		text-align: center;
+		text-indent: 101%;
+		cursor: pointer;
+		color: darken(@boilerplate-white,60%);
+		background: darken(@boilerplate-white,2%);
+		border: 4px solid darken(@boilerplate-white,60%);
+		opacity: 0.8;
+		#boilerplate-transition > .short;
+		#boilerplate-border-radius > .generic(@pagersize);
+		
+		&:hover {
+			opacity: 1;
+			.no-opacity & {
+				background: @boilerplate-white;
+				color: darken(@boilerplate-white,70%);
+			}
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			text-indent: 0;
+			text-align: center;
+			font-weight: bold;
+		}
+		&.prev {
+			left: 40px;
+			&:before {
+				content: "<";
+			}
+		}
+		&.next {
+			right: 40px;
+			&:after {
+				content: ">";
+			}
+		}
+
+		/* IE7 */
+		.no-generatedcontent & {
+			text-indent: 0;
+			font-size: 20px;
+		}
+	}
+}
